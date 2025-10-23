@@ -56,7 +56,7 @@ const App = () => {
         name: "📊 Mutual Fund Overview & Insights",
         description:
           "A data-driven analysis project identifying the top 30 mutual fund schemes with high return and low risk using Python (Pandas, Sklearn) and Power BI for visualization.",
-        githubLink: "https://github.com/Sachin-Kumar540/mutual_fund_insights",
+        githubLink: "https://github.com/Sachin-Kumar540/mutual-funds",
         deployedLink: "#"
       }
     ],
