@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
-// Main App component which acts as a single-page portfolio.
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const portfolioData = {
@@ -16,7 +13,7 @@ const App = () => {
     title: "Electronics and Instrumentation Engineer",
     contact: {
       email: "sk9313827@gmail.com",
-      github: "https://github.com/SachinKumar",
+      github: "https://github.com/Sachin-Kumar540",
       linkedin: "https://linkedin.com/in/Sachin-kumar",
       leetcode: "https://leetcode.com/SachinKumar"
     },
@@ -51,14 +48,14 @@ const App = () => {
       {
         name: "Spotify Clone",
         description:
-          "A responsive Spotify UI clone developed using HTML, CSS, and JavaScript. This project demonstrates a strong understanding of front-end development and a keen eye for design.",
+          "A responsive Spotify UI clone built using HTML, CSS, and JavaScript. This project showcases front-end development skills and attention to responsive design.",
         githubLink: "https://github.com/Sachin-Kumar540/spotify_clone",
         deployedLink: "#"
       },
       {
         name: "📊 Mutual Fund Overview & Insights",
         description:
-          "A data-driven project analyzing 2500+ mutual fund schemes to identify the top 30 with high return and low risk. Performed data preprocessing and ranking using Python (Pandas, Sklearn) and visualized results through interactive Power BI dashboards.",
+          "A data-driven analysis project identifying the top 30 mutual fund schemes with high return and low risk using Python (Pandas, Sklearn) and Power BI for visualization.",
         githubLink: "https://github.com/Sachin-Kumar540/mutual_fund_insights",
         deployedLink: "#"
       }
@@ -80,10 +77,15 @@ const App = () => {
           {portfolioData.name.split(' ')[0]}
         </div>
         <nav className="hidden md:flex space-x-8">
-          <button onClick={() => scrollToSection('about')} className="text-gray-300 hover:text-emerald-400 transition-colors duration-300 font-medium text-lg">About</button>
-          <button onClick={() => scrollToSection('skills')} className="text-gray-300 hover:text-emerald-400 transition-colors duration-300 font-medium text-lg">Skills</button>
-          <button onClick={() => scrollToSection('projects')} className="text-gray-300 hover:text-emerald-400 transition-colors duration-300 font-medium text-lg">Projects</button>
-          <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-emerald-400 transition-colors duration-300 font-medium text-lg">Contact</button>
+          {["about", "skills", "projects", "contact"].map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className="text-gray-300 hover:text-emerald-400 transition-colors duration-300 font-medium text-lg capitalize"
+            >
+              {section}
+            </button>
+          ))}
         </nav>
       </div>
     </header>
@@ -91,7 +93,10 @@ const App = () => {
 
   // Hero Section
   const Hero = () => (
-    <section id="hero" className="min-h-screen flex items-center justify-center text-center text-white bg-gray-950 px-4 py-20">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center text-center text-white bg-gray-950 px-4 py-20"
+    >
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
         <div className="flex-1 text-center md:text-left space-y-8">
           <h1 className="text-5xl sm:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
@@ -100,14 +105,6 @@ const App = () => {
           <p className="text-2xl sm:text-4xl font-light text-gray-300">
             {portfolioData.title}
           </p>
-          <div className="flex justify-center md:justify-start space-x-8 mt-10">
-            <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-transform transform hover:scale-125">
-              <i className="fab fa-linkedin fa-2x"></i>
-            </a>
-            <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-transform transform hover:scale-125">
-              <i className="fab fa-github fa-2x"></i>
-            </a>
-          </div>
         </div>
         <div className="flex-shrink-0 mt-12 md:mt-0">
           <img
@@ -144,10 +141,15 @@ const App = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(portfolioData.skills).map(([category, skills]) => (
               <div key={category} className="p-4 rounded-lg bg-gray-800 border border-gray-700">
-                <h3 className="text-xl font-semibold text-blue-400 mb-2 capitalize">{category}</h3>
+                <h3 className="text-xl font-semibold text-blue-400 mb-2 capitalize">
+                  {category}
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (
-                    <span key={index} className="bg-emerald-800 text-emerald-200 px-4 py-1 rounded-full text-sm font-medium hover:bg-emerald-700 transition-colors duration-300">
+                    <span
+                      key={index}
+                      className="bg-emerald-800 text-emerald-200 px-4 py-1 rounded-full text-sm font-medium hover:bg-emerald-700 transition-colors duration-300"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -166,16 +168,33 @@ const App = () => {
         <Card title="Projects">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioData.projects.map((project, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all duration-300 border border-gray-700 hover:border-emerald-400">
-                <h3 className="text-2xl font-bold text-white mb-2">{project.name}</h3>
+              <div
+                key={index}
+                className="bg-gray-800 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all duration-300 border border-gray-700 hover:border-emerald-400"
+              >
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {project.name}
+                </h3>
                 <p className="text-gray-400 mb-4">{project.description}</p>
                 <div className="flex space-x-4 mt-4">
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 flex items-center space-x-2"
+                  >
                     <i className="fab fa-github fa-lg"></i>
+                    <span>GitHub</span>
                   </a>
-                  {project.deployedLink && (
-                    <a href={project.deployedLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                  {project.deployedLink && project.deployedLink !== "#" && (
+                    <a
+                      href={project.deployedLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2"
+                    >
                       <i className="fas fa-external-link-alt fa-lg"></i>
+                      <span>Live</span>
                     </a>
                   )}
                 </div>
@@ -188,14 +207,41 @@ const App = () => {
   );
 
   const Contact = () => (
-    <section id="contact" className="py-20 bg-gray-950 text-gray-300">
-      <div className="container mx-auto px-4">
-        <Card title="Contact">
-          <p className="text-lg mb-4">📧 {portfolioData.contact.email}</p>
-          <p className="text-gray-400">Let's connect on LinkedIn or GitHub!</p>
-        </Card>
+    <footer id="contact" className="py-20 bg-gray-950 text-gray-300 border-t border-gray-800">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-emerald-400">Contact Me</h2>
+        <p className="text-lg mb-8">📧 {portfolioData.contact.email}</p>
+        <div className="flex justify-center space-x-10">
+          <a
+            href={portfolioData.contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-emerald-400 transition-transform transform hover:scale-125"
+          >
+            <i className="fab fa-github fa-2x"></i>
+          </a>
+          <a
+            href={portfolioData.contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-blue-400 transition-transform transform hover:scale-125"
+          >
+            <i className="fab fa-linkedin fa-2x"></i>
+          </a>
+          <a
+            href={portfolioData.contact.leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-yellow-400 transition-transform transform hover:scale-125"
+          >
+            <i className="fas fa-code fa-2x"></i>
+          </a>
+        </div>
+        <p className="mt-8 text-sm text-gray-500">
+          © {new Date().getFullYear()} {portfolioData.name}. All Rights Reserved.
+        </p>
       </div>
-    </section>
+    </footer>
   );
 
   return (
